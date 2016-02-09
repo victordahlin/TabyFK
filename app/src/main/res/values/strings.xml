@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">TäbyFK</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="title_activity_offer">OfferActivity</string>
+    <string name="title_create_account">Registrera konto</string>
+    <string name="title_password_remind">Återställ lösenord</string>
+    <string name="button_temporary_deals">Tillfälig deals</string>
+    <string name="button_tfk_partners">TFK-partners</string>
+    <string name="button_super_deals">Super deals</string>
+    <string name="button_offers">Erbjudande</string>
+    <string name="button_first_name">Förnamn</string>
+    <string name="button_last_name">Efternamn</string>
+    <string name="button_email">Email</string>
+    <string name="button_login">Logga in</string>
+    <string name="button_password">Lösenord</string>
+    <string name="button_password_remind">Glömt lösenord?</string>
+    <string name="button_password_verify">Lösenord (igen)</string>
+    <string name="button_activation_code">Aktiveringskod</string>
+    <string name="button_create">Skapa konto</string>
+    <string name="button_cancel">Avbryt</string>
+    <string name="button_read_terms_and_conditions">Allmäna villkor </string>
+    <string name="button_companies">Företag</string>
+    <string name="button_categories">Branscher</string>
+    <string name="button_all_offers">Se alla erbjudanden</string>
+    <string name="terms_and_condition">
+        Genom att logga in i appen godkänner du att Täby FK tar del av den personliga information som registreras.
+        Du bekräftar att du är 18 år alternativt att du har målsmans tillåtelse att logga in i appen.
+        Täby FK har tillåtelse att samla information rörande hur många erbjudanden som utnyttjas,
+        vilken användare som utnyttjar respektive erbjudande, samt därefter använda detta i marknadsföringssyfte.
+        Täby FK får också tillåtelse att skicka ut sms till respektive användare när ett nytt erbjudande blir brukbart.
+        Användaren har därefter möjlighet att tacka nej till att få erbjudanden via sms om så önskas.
+    </string>
+    <string name="text_accept_terms_and_conditions">
+        Jag intygar att jag har tagit del av och accepterar villkoren
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity">Täby Fotbollsklubb</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_company_offers">CompanyOffersActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="se.tabyfkappen.tabyfk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".activities.CreateAccountActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.ResetPasswordActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.SuperDealsActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.OfferActivity"
+            android:label="@string/title_activity_offer"
+            android:parentActivityName=".activities.SuperDealsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.CompanyListActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.CategoryListActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.AboutAppActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.AboutTabyFKActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.TemporaryDealsActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.CompanyActivity"
+            android:label="@string/title_activity"
+            android:parentActivityName=".activities.CompanyListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.OfferListActivity"
+            android:label="@string/title_activity"
+            android:parentActivityName=".activities.CompanyActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/title_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.CategoryActivity"
+            android:label="@string/title_activity"
+            android:parentActivityName=".activities.CategoryListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.CompanyOffersActivity"
+            android:label="@string/title_activity_company_offers"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+    </application>
+
+</manifest>

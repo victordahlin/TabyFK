@@ -1,0 +1,110 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back_ground_gradient"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llButtonTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                tools:ignore="NestedWeights"
+                android:id="@+id/bCompanyList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:text="@string/button_companies"></Button>
+
+            <Button
+                tools:ignore="NestedWeights"
+                android:id="@+id/bCategoryList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="@string/button_categories"
+                android:textColor="@android:color/white"></Button>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:background="@drawable/back_ground_gradient">
+
+            <ScrollView
+                android:id="@+id/super_deals_scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <ListView
+                    android:id="@+id/lvItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@android:color/white"
+                    android:dividerHeight="1dip"></ListView>
+
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/small_bg">
+
+            <Button
+                tools:ignore="NestedWeights"
+                android:id="@+id/bShowOffers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:text="@string/button_offers">
+            </Button>
+
+            <Button
+                tools:ignore="NestedWeights"
+                android:id="@+id/bTFKpartners"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_tfk_partners"
+                android:background="@android:color/white">
+
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lNavDeals"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white" />
+
+</android.support.v4.widget.DrawerLayout>
+
