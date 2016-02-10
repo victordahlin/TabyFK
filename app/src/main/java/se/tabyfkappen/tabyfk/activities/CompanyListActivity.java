@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
@@ -35,6 +38,7 @@ public class CompanyListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_company_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -114,8 +118,7 @@ public class CompanyListActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         // Add listner to the navigation drawer
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

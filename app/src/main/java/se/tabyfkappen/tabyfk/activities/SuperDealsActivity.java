@@ -14,11 +14,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
-import se.tabyfkappen.tabyfk.helpers.ImageHelper;
 import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.models.User;
@@ -27,7 +29,7 @@ public class SuperDealsActivity extends AppCompatActivity {
     private ListView mDrawerList, mListView;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private Button mTemporaryDealsButton, mTFKpartners;
+    private Button mTemporaryDealsButton, mPartners;
     private UserDataSource mDataSource;
     private User mUser;
     private OfferAdapter mOfferAdapter;
@@ -35,6 +37,7 @@ public class SuperDealsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_super_deals);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,9 +46,7 @@ public class SuperDealsActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.lNavDeals);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mTemporaryDealsButton = (Button) findViewById(R.id.bTemporaryDeals);
-        mTFKpartners = (Button) findViewById(R.id.bTFKpartners);
-
-        new ImageHelper(getApplicationContext());
+        mPartners = (Button) findViewById(R.id.bTFKpartners);
 
         // Init database handler
         mDataSource = new UserDataSource(this);
@@ -59,10 +60,11 @@ public class SuperDealsActivity extends AppCompatActivity {
 
         addDrawerItems();
         setupDrawer();
+
         setListOnClick();
         setOfferAdapter();
         setTemporaryDealsOnClick();
-        setTFKpartnersOnClick();
+        setPartnersOnClick();
 
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -79,8 +81,8 @@ public class SuperDealsActivity extends AppCompatActivity {
         });
     }
 
-    public void setTFKpartnersOnClick() {
-        mTFKpartners.setOnClickListener(new View.OnClickListener() {
+    public void setPartnersOnClick() {
+        mPartners.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent tfkPartners = new Intent(SuperDealsActivity.this, CompanyListActivity.class);
@@ -113,10 +115,8 @@ public class SuperDealsActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
-
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,8 +128,8 @@ public class SuperDealsActivity extends AppCompatActivity {
                         startActivity(app);
                         break;
                     case 2:
-                        Intent tabyfk = new Intent(SuperDealsActivity.this, AboutTabyFKActivity.class);
-                        startActivity(tabyfk);
+                        Intent about = new Intent(SuperDealsActivity.this, AboutTabyFKActivity.class);
+                        startActivity(about);
                         break;
                     case 3:
                         mDataSource.update(mUser.getEmail(), mUser.getEmail(), null);

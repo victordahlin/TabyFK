@@ -23,10 +23,10 @@
         <activity
             android:name=".activities.SuperDealsActivity"
             android:label="@string/title_activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.OfferActivity"
-            android:label="@string/title_activity_offer"
+            android:label="@string/title_activity"
             android:parentActivityName=".activities.SuperDealsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -62,7 +62,7 @@
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -76,7 +76,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.CompanyOffersActivity"
-            android:label="@string/title_activity_company_offers"
+            android:label="@string/title_activity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 

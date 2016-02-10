@@ -75,6 +75,11 @@ public class RestClient {
         return mInstance;
     }
 
+    /**
+     * Receive all offers from JSON and split into super
+     * and temporary deals and create Offer objects
+     * @param subDomain
+     */
     private void setOffers(String subDomain) {
         try {
             String jsonString = "";
@@ -84,6 +89,7 @@ public class RestClient {
                 e.printStackTrace();
             }
             JSONArray jsonArray = new JSONArray(jsonString);
+
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 if(jsonObject.getInt("is_super_deal") > 0) {
@@ -99,6 +105,11 @@ public class RestClient {
         }
     }
 
+    /**
+     * Receive all companies JSON and create
+     * Company objects
+     * @param subDomain
+     */
     private void setCompanies(String subDomain) {
         try {
             String jsonString = "";
@@ -118,6 +129,10 @@ public class RestClient {
         }
     }
 
+    /**
+     *
+     * @param subDomain
+     */
     private void setCategories(String subDomain) {
         try {
             String jsonString = "";
@@ -137,6 +152,10 @@ public class RestClient {
         }
     }
 
+    /**
+     *
+     * @param subDomain
+     */
     private void setInformation(String subDomain) {
         try {
             String jsonString = "";
@@ -157,15 +176,23 @@ public class RestClient {
         }
     }
 
+    /**
+     * Sort list of offer for expiring date
+     * @param list
+     */
     private void sortOffers(List<Offer> list) {
         Collections.sort(list, new Comparator<Offer>() {
             @Override
             public int compare(Offer lhs, Offer rhs) {
-                return lhs.getName().compareToIgnoreCase(rhs.getName());
+                return lhs.getEndDate().compareToIgnoreCase(rhs.getEndDate());
             }
         });
     }
 
+    /**
+     * Sort companies for names
+     * @param list
+     */
     private void sortCompanies(List<Company> list) {
         Collections.sort(list, new Comparator<Company>() {
             @Override
@@ -175,6 +202,10 @@ public class RestClient {
         });
     }
 
+    /**
+     * Sort categories for names
+     * @param list
+     */
     private void sortCategories(List<Category> list) {
         Collections.sort(list, new Comparator<Category>() {
             @Override
@@ -184,6 +215,11 @@ public class RestClient {
         });
     }
 
+    /**
+     *
+     * @param companyID
+     * @return
+     */
     public ArrayList<Offer> getSelectedOffers(int companyID) {
         ArrayList<Offer> filtered = new ArrayList<>();
         for(Offer offer : mSuperDeals) {
@@ -200,6 +236,11 @@ public class RestClient {
         return filtered;
     }
 
+    /**
+     *
+     * @param categoryID
+     * @return
+     */
     public ArrayList<Company> getSelectedCompanies(int categoryID) {
         ArrayList<Company> filtered = new ArrayList<>();
         for(Company company : mCompanies) {
@@ -210,6 +251,10 @@ public class RestClient {
         return filtered;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void removeOffer(int id) {
         Iterator<Offer> superIterator = mSuperDeals.iterator();
 

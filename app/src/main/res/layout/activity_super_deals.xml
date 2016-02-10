@@ -19,25 +19,7 @@
             android:background="@drawable/small_bg"
             app:popupTheme="@style/PopupOverlay" />
 
-        <!--
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:theme="the"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabGravity="fill"/>
-            -->
-
     </android.support.design.widget.AppBarLayout>
-
-    <!--
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
-        -->
 
     <include layout="@layout/content_super_deals" />
 

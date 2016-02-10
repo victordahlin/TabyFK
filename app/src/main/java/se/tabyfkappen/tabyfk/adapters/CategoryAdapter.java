@@ -1,12 +1,15 @@
 package se.tabyfkappen.tabyfk.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
@@ -48,21 +51,13 @@ public class CategoryAdapter extends BaseAdapter {
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.tvGridName);
-        ImageView ivIcon = (ImageView) convertView.findViewById(R.id.ivGridIcon);
-
+        SimpleDraweeView ivIcon = (SimpleDraweeView) convertView.findViewById(R.id.ivGridIcon);
         // Get data item for this position
         Category category = categories.get(position);
         // Apply URL for current offer
         String url = "https://www.tabyfkappen.se/api/v1/image/" + category.getImageFilePath();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .resetViewBeforeLoading(true)
-                .showImageForEmptyUri(R.drawable.ic_texture_black_24dp)
-                .showImageOnFail(R.drawable.ic_texture_black_24dp)
-                .showImageOnLoading(R.drawable.ic_texture_black_24dp).build();
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(url, ivIcon, options);
+        Uri imageUri = Uri.parse(url);
+        ivIcon.setImageURI(imageUri);
         // Populate the data into the template view using the data object
         tvName.setText(category.getName());
 

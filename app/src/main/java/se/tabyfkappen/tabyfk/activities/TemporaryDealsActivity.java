@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,7 +24,6 @@ import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
-import se.tabyfkappen.tabyfk.helpers.ImageHelper;
 import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.models.User;
 
@@ -32,12 +34,13 @@ public class TemporaryDealsActivity extends AppCompatActivity {
     private Button mSuperDealsButton;
     private UserDataSource dataSource;
     private User user;
-    private Button mTFKpartners;
+    private Button mPartners;
     private OfferAdapter mOfferAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_temporary_deals);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,9 +49,7 @@ public class TemporaryDealsActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.lNavDeals);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mSuperDealsButton = (Button) findViewById(R.id.bSuperDeals);
-        mTFKpartners = (Button) findViewById(R.id.bTFKpartners);
-
-        new ImageHelper(getApplicationContext());
+        mPartners = (Button) findViewById(R.id.bTFKpartners);
 
         // init database
         dataSource = new UserDataSource(this);
@@ -64,7 +65,7 @@ public class TemporaryDealsActivity extends AppCompatActivity {
         addDrawerItems();
         setupDrawer();
         setSuperDealsOnClick();
-        setTFKpartnersOnClick();
+        setPartnersOnClick();
 
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,8 +82,8 @@ public class TemporaryDealsActivity extends AppCompatActivity {
         });
     }
 
-    public void setTFKpartnersOnClick() {
-        mTFKpartners.setOnClickListener(new View.OnClickListener() {
+    public void setPartnersOnClick() {
+        mPartners.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent tfkPartners = new Intent(TemporaryDealsActivity.this, CompanyListActivity.class);
@@ -115,8 +116,7 @@ public class TemporaryDealsActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

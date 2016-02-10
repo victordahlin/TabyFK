@@ -15,7 +15,6 @@ import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
-import se.tabyfkappen.tabyfk.helpers.ImageHelper;
 import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.models.User;
 
@@ -46,8 +45,6 @@ public class OfferListActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        new ImageHelper(getApplicationContext());
 
         String name = getIntent().getStringExtra("offerName");
 

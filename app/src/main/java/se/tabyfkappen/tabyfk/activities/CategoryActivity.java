@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import se.tabyfkappen.tabyfk.helpers.ImageHelper;
+
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.CompanyAdapter;
@@ -43,8 +43,6 @@ public class CategoryActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        new ImageHelper(getApplicationContext());
 
         setCompanyAdapter();
         setCompanyListOnClick();

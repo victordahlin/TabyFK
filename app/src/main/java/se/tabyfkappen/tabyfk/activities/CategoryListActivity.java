@@ -15,12 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.CategoryAdapter;
-import se.tabyfkappen.tabyfk.helpers.ImageHelper;
 import se.tabyfkappen.tabyfk.models.Category;
 import se.tabyfkappen.tabyfk.models.User;
 
@@ -38,6 +40,7 @@ public class CategoryListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_category_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,8 +60,6 @@ public class CategoryListActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        new ImageHelper(getApplicationContext());
 
         setGridViewOnClick();
         setCategoryAdapter();
@@ -111,8 +112,7 @@ public class CategoryListActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
