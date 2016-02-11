@@ -1,41 +1,42 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ivCompany"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            fresco:placeholderImage="@drawable/ic_texture_black_24dp" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="100"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="100"
+                android:orientation="vertical"
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivCompany"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:src="@drawable/tfk_logga" />
+                android:paddingTop="@dimen/activity_vertical_margin">
 
                 <TextView
                     android:id="@+id/tvOpeningHours"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_categories"
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
@@ -45,7 +46,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/button_categories"
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
@@ -55,96 +55,78 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/button_categories"
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tvMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:autoLink="phone"
-                    android:text="@string/button_categories"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoLink="email"
-                        android:text="@string/button_categories"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tvWebsite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoLink="web"
-                        android:text="@string/button_categories"
-                        android:gravity="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/bCompanyAllOffers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/button_all_offers"
-                    android:gravity="center" />
-
 
             </LinearLayout>
+        </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/buttonsBottom"
-                android:layout_width="match_parent"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/ibMobile"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/small_bg"
-                android:orientation="horizontal">
+                android:src="@drawable/ic_call_black_24dp" />
 
-                <Button
-                    android:id="@+id/bShowOffers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:text="@string/button_offers"
-                    android:textColor="@android:color/white"></Button>
+            <ImageButton
+                android:id="@+id/ibEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_email_black_24dp" />
 
-                <Button
-                    android:id="@+id/bTFKpartners"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:text="@string/button_tfk_partners">
-
-                </Button>
-            </LinearLayout>
+            <ImageButton
+                android:id="@+id/ibWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_language_black_24dp" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <Button
+            android:id="@+id/bCompanyAllOffers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@string/button_all_offers" />
 
+        <LinearLayout
+            android:id="@+id/buttonsBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/small_bg"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bShowOffers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="@string/button_offers"
+                android:textColor="@android:color/white"></Button>
+
+            <Button
+                android:id="@+id/bTFKpartners"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:text="@string/button_tfk_partners">
+
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lNavDeals"

@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.json.JSONObject;
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
@@ -22,7 +21,7 @@ import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.models.User;
 
 public class AboutTabyFKActivity extends AppCompatActivity {
-    private ListView mDrawerList, mListView;
+    private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private UserDataSource dataSource;
@@ -40,19 +39,9 @@ public class AboutTabyFKActivity extends AppCompatActivity {
         TextView mAboutApp = (TextView) findViewById(R.id.tvAboutTabyFK);
 
         // init database
-        dataSource = new UserDataSource(this);
-        try {
-            dataSource.open();
-            user = dataSource.getUser();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        initDatabase();
 
         // Get offers JSON from RestAPI and convert to string
-        /*RestClient client = new RestClient(user.getToken());
-        JSONObject jsonObject = client.getJSONObject("getInfo");
-        mAboutApp.setText(client.getAppText(jsonObject, "tabyfk"));*/
         mAboutApp.setText(RestClient.getInstance(user.getToken()).getAboutTabyFK());
 
         addDrawerItems();
@@ -63,10 +52,19 @@ public class AboutTabyFKActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    private void initDatabase() {
+        dataSource = new UserDataSource(this);
+        try {
+            dataSource.open();
+            user = dataSource.getUser();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,7 +84,6 @@ public class AboutTabyFKActivity extends AppCompatActivity {
                         Intent logout = new Intent(AboutTabyFKActivity.this, LoginActivity.class);
                         startActivity(logout);
                         break;
-
                 }
             }
         });

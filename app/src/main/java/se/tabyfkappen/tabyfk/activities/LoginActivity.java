@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,9 +90,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(mPassword.isEmpty() || mEmail.isEmpty() || !mEmail.contains("@")) {
                     new AlertDialog.Builder(LoginActivity.this)
-                            .setTitle("Kunde inte logga in")
-                            .setMessage("Vänligen fyll i e-mail och/eller lösenord")
-                            .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.button_login_error)
+                            .setMessage(R.string.email_and_password_message)
+                            .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {}
                             }).show();
@@ -210,9 +209,9 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(final String msg) {
             if(msg.contains("401")) {
                 new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("Kunde inte logga in")
-                        .setMessage("Fel e-mail eller lösenord")
-                        .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.button_login_error)
+                        .setMessage(R.string.error_email_password)
+                        .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {}
                         }).show();
@@ -224,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Save new credentials (assume user logout)
                     dataSource.update(mEmail, mPassword, mToken);
 
-                    Intent offers = new Intent(LoginActivity.this, SuperDealsActivity.class);
+                    final Intent offers = new Intent(LoginActivity.this, SuperDealsActivity.class);
                     startActivity(offers);
 
                 } catch (JSONException e) {

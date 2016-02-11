@@ -4,16 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import java.sql.SQLException;
-
 import se.tabyfkappen.tabyfk.helpers.MySQLiteHelper;
 import se.tabyfkappen.tabyfk.models.User;
 
-/**
- * Created by Victor on 2016-01-24.
- */
 public class UserDataSource {
     private SQLiteDatabase db;
     private MySQLiteHelper dbHelper;
@@ -65,10 +59,6 @@ public class UserDataSource {
             create(email, password, token);
         }
         c.close();
-    }
-
-    public void dropAll() {
-        db.delete(MySQLiteHelper.TABLE_USER,null,null);
     }
 
     public int size() {

@@ -11,15 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
-
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
@@ -79,9 +75,9 @@ public class OfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(OfferActivity.this)
-                        .setTitle("")
-                        .setMessage("Vill du förbruka detta erbjudande?")
-                        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.empty)
+                        .setMessage(R.string.message_use_offer)
+                        .setPositiveButton(R.string.message_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String url = "https://www.tabyfkappen.se/api/v1/offer?token="
@@ -89,7 +85,7 @@ public class OfferActivity extends AppCompatActivity {
                                 new OfferUseTask().execute(url);
                             }
                         })
-                        .setNegativeButton("Nej", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.message_no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();

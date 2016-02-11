@@ -14,9 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
-
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;

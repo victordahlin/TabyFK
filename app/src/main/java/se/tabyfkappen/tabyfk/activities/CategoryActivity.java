@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.CompanyAdapter;
@@ -35,14 +34,7 @@ public class CategoryActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.lvItems);
 
         // init database
-        dataSource = new UserDataSource(this);
-        try {
-            dataSource.open();
-            user = dataSource.getUser();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        initDatabase();
 
         setCompanyAdapter();
         setCompanyListOnClick();
@@ -52,6 +44,17 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    private void initDatabase() {
+        dataSource = new UserDataSource(this);
+        try {
+            dataSource.open();
+            user = dataSource.getUser();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setCompanyAdapter() {
         int categoryId = getIntent().getIntExtra("categoryId", 0);
         ArrayList<Company> companies = RestClient.getInstance(
@@ -59,8 +62,8 @@ public class CategoryActivity extends AppCompatActivity {
 
         if(companies.isEmpty() || companies.size() < 1) {
             new AlertDialog.Builder(CategoryActivity.this)
-                    .setMessage("Tyvärr finns det inga erbjudande just nu")
-                    .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                    .setMessage(R.string.message_no_offers)
+                    .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();

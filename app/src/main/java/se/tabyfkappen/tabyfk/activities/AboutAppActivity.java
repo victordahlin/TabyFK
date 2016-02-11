@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.json.JSONObject;
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
@@ -39,19 +38,9 @@ public class AboutAppActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         TextView mAboutApp = (TextView) findViewById(R.id.tvAboutApp);
 
-        // init database
-        dataSource = new UserDataSource(this);
-        try {
-            dataSource.open();
-            user = dataSource.getUser();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        initDatabase();
 
         // Get offers JSON from RestAPI and convert to string
-        /*RestClient client = new RestClient(user.getToken());
-        JSONObject jsonObject = client.getJSONObject("getInfo");*/
         mAboutApp.setText(RestClient.getInstance(user.getToken()).getAboutApp());
 
         addDrawerItems();
@@ -62,9 +51,19 @@ public class AboutAppActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    private void initDatabase() {
+        dataSource = new UserDataSource(this);
+        try {
+            dataSource.open();
+            user = dataSource.getUser();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void addDrawerItems() {
-        String[] menuItems = { "Erbjudande & Partners", "Om appen", "Om Täby FK", "Logga ut" };
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,9 +76,9 @@ public class AboutAppActivity extends AppCompatActivity {
                     case 1:
                         break;
                     case 2:
-                        Intent tabyfk = new Intent(AboutAppActivity.this, AboutTabyFKActivity.class);
-                        tabyfk.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(tabyfk);
+                        Intent about = new Intent(AboutAppActivity.this, AboutTabyFKActivity.class);
+                        about.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(about);
                         break;
                     case 3:
                         Intent logout = new Intent(AboutAppActivity.this, LoginActivity.class);

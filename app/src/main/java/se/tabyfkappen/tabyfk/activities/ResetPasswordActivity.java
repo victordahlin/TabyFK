@@ -46,9 +46,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                 if(mEmail.isEmpty() || !mEmail.contains("@")) {
                     new AlertDialog.Builder(ResetPasswordActivity.this)
-                            .setTitle("Kunde inte skicka ut nytt lösenord")
-                            .setMessage("Ange en e-mail eller e-mail är felaktig")
-                            .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.error_send_email_password)
+                            .setMessage(R.string.error_email_password)
+                            .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {}
                             }).show();
@@ -68,14 +68,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
         });
     }
 
-    private void setAlertBox(String title, String message) {
+    private void setAlertBox(int title, int message) {
         new AlertDialog.Builder(ResetPasswordActivity.this)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 }).show();
     }
 
@@ -124,9 +123,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Integer msg) {
             if(msg == 404) {
-                setAlertBox("Ogiltig email", "Den givna e-mail existerar ej");
+                setAlertBox(R.string.error_email, R.string.error_invalid_email);
             } else {
-                setAlertBox("Mail utskickat", "Tack, vi har skickat ut en länk till din e-mail");
+                setAlertBox(R.string.message_email_send, R.string.message_email_send_info);
             }
         }
     }

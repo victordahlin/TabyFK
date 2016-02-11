@@ -44,18 +44,21 @@ public class CreateAccountActivity extends AppCompatActivity {
         mConditionTerms = (Button) findViewById(R.id.bTermsCondition);
         mCreateAccount = (Button) findViewById(R.id.bCreateAccount);
 
-        // init database
+        initDatabase();
+
+        // Activate on click
+        setCancelButtonOnClick();
+        setConditionTermsOnClick();
+        setCreateAccountOnClick();
+    }
+
+    private void initDatabase() {
         dataSource = new UserDataSource(this);
         try {
             dataSource.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Activate on click
-        setCancelButtonOnClick();
-        setConditionTermsOnClick();
-        setCreateAccountOnClick();
     }
 
     private void setCancelButtonOnClick() {
@@ -88,18 +91,21 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String mPasswordVerify = etPasswordVerify.getText().toString();
                 String mCode = etCode.getText().toString().trim();
 
-                if((mFirstName.isEmpty() && mFirstName != null) || (mLastName.isEmpty() && mLastName != null)
-                        || (mEmail.isEmpty() && mEmail != null) || (mPassword.isEmpty() && mPassword != null) ||
-                        (mPasswordVerify.isEmpty() && mPasswordVerify != null) || (mCode.isEmpty() && mCode != null)) {
-                    setAlertBox("Fyll i alla fält", "Alla fält måste vara ifyllda");
+                if((mFirstName.isEmpty() && mFirstName != null)
+                        || (mLastName.isEmpty() && mLastName != null)
+                        || (mEmail.isEmpty() && mEmail != null)
+                        || (mPassword.isEmpty() && mPassword != null)
+                        || (mPasswordVerify.isEmpty() && mPasswordVerify != null)
+                        || (mCode.isEmpty() && mCode != null)) {
+                    setAlertBox(R.string.empty, R.string.message_all_fields);
                 } else if(mPassword.length() < 6) {
-                    setAlertBox("Lösenordet är för kort", "Lösenordet måste vara minst 6 tecken långt");
+                    setAlertBox(R.string.empty, R.string.error_invalid_password);
                 } else if (!mPassword.equals(mPasswordVerify)) {
-                    setAlertBox("Lösenorden matchar inte", "Var god försök igen");
+                    setAlertBox(R.string.empty, R.string.error_incorrect_password);
                 } else if(!cbTermConditions.isChecked()) {
-                    setAlertBox("Påminnelse om villkor", "Ni måste acceptera villkoren");
+                    setAlertBox(R.string.error_condition, R.string.error_condition_accept);
                 } else if(!mEmail.contains("@")) {
-                    setAlertBox("Felaktig e-mail", "Ange en riktig e-mail");
+                    setAlertBox(R.string.error_email, R.string.error_email_message);
                 } else {
                     new CreateAccountTask(mFirstName, mLastName, mEmail, mPassword, mCode).execute();
                 }
@@ -107,14 +113,13 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
     }
 
-    private void setAlertBox(String title, String message) {
+    private void setAlertBox(int title, int message) {
         new AlertDialog.Builder(CreateAccountActivity.this)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton("Stäng", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 }).show();
     }
 
@@ -237,11 +242,11 @@ public class CreateAccountActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String msg) {
             if(msg.contains("401")) {
-                setAlertBox("Ogiltig aktiveringskod", "Aktiveringskod är redan använd");
+                setAlertBox(R.string.activation_code, R.string.activation_code_used);
             } else if(msg.contains("404")) {
-                setAlertBox("Ogiltig aktiveringskod", "Aktiveringskod är ej giltig");
+                setAlertBox(R.string.activation_code, R.string.activation_code_invalid);
             } else if(msg.contains("403")) {
-                setAlertBox("Felaktig e-mail", "E-mail som angavs har redan blivit använd");
+                setAlertBox(R.string.error_email, R.string.error_email_used);
             } else {
                 try {
                     JSONObject jsonObject = new JSONObject(msg);

@@ -44,22 +44,9 @@ public class CategoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
-        mGridView = (GridView) findViewById(R.id.gList);
-        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mCompanyListButton = (Button) findViewById(R.id.bCompanyList);
-        mShowOffers = (Button) findViewById(R.id.bShowOffers);
 
-        // init database
-        mDataSource = new UserDataSource(this);
-        try {
-            mDataSource.open();
-            mUser = mDataSource.getUser();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        initGUIElements();
+        initDatabase();
 
         setGridViewOnClick();
         setCategoryAdapter();
@@ -71,6 +58,25 @@ public class CategoryListActivity extends AppCompatActivity {
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void initGUIElements() {
+        mGridView = (GridView) findViewById(R.id.gList);
+        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mCompanyListButton = (Button) findViewById(R.id.bCompanyList);
+        mShowOffers = (Button) findViewById(R.id.bShowOffers);
+    }
+
+    private void initDatabase() {
+        mDataSource = new UserDataSource(this);
+        try {
+            mDataSource.open();
+            mUser = mDataSource.getUser();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setShowOffersOnClick() {

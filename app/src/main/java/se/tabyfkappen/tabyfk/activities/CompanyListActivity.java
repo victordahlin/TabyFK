@@ -14,9 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
-
 import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
@@ -43,20 +41,8 @@ public class CompanyListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mListView = (ListView) findViewById(R.id.lvItems);
-        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mCategoryListButton = (Button) findViewById(R.id.bCategoryList);
-        mShowOffers = (Button) findViewById(R.id.bShowOffers);
-
-        // Init database handler
-        mDataSource = new UserDataSource(this);
-        try {
-            mDataSource.open();
-            mUser = mDataSource.getUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        initGUIElements();
+        initDatabase();
 
         setCompanyListOnClick();
         setCompanyAdapter();
@@ -68,6 +54,24 @@ public class CompanyListActivity extends AppCompatActivity {
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void initGUIElements() {
+        mListView = (ListView) findViewById(R.id.lvItems);
+        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mCategoryListButton = (Button) findViewById(R.id.bCategoryList);
+        mShowOffers = (Button) findViewById(R.id.bShowOffers);
+    }
+
+    private void initDatabase() {
+        mDataSource = new UserDataSource(this);
+        try {
+            mDataSource.open();
+            mUser = mDataSource.getUser();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setShowOffersOnClick() {
@@ -118,9 +122,9 @@ public class CompanyListActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
+        ArrayAdapter<String> mAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
-        // Add listner to the navigation drawer
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -134,8 +138,8 @@ public class CompanyListActivity extends AppCompatActivity {
                         startActivity(app);
                         break;
                     case 2:
-                        Intent tabyfk = new Intent(CompanyListActivity.this, AboutTabyFKActivity.class);
-                        startActivity(tabyfk);
+                        Intent about = new Intent(CompanyListActivity.this, AboutTabyFKActivity.class);
+                        startActivity(about);
                         break;
                     case 3:
                         Intent logout = new Intent(CompanyListActivity.this, LoginActivity.class);
