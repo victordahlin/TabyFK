@@ -52,7 +52,7 @@ public class OfferListActivity extends AppCompatActivity {
         TextView tvOfferFor = (TextView) findViewById(R.id.tvOffersFor);
         mShowOffers = (Button) findViewById(R.id.bShowOffers);
 
-        tvOfferFor.setText("erbjudande för " + name);
+        tvOfferFor.setText(getResources().getString(R.string.button_offers) + " för " + name);
         getSupportActionBar().setTitle(name);
 
         setCompanyAdapter();

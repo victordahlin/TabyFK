@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import se.tabyfkappen.tabyfk.R;
+import se.tabyfkappen.tabyfk.models.Company;
 
 public class CompanyActivity extends AppCompatActivity {
     private Button mAllOffers;
@@ -21,7 +22,8 @@ public class CompanyActivity extends AppCompatActivity {
     private ImageButton mWebsite;
     private ImageButton mEmail;
     private ImageButton mMobile;
-    
+    private Button mShowOffers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class CompanyActivity extends AppCompatActivity {
         mWebsite = (ImageButton) findViewById(R.id.ibWebsite);
         mEmail = (ImageButton) findViewById(R.id.ibEmail);
         mMobile = (ImageButton) findViewById(R.id.ibMobile);
+        mShowOffers = (Button) findViewById(R.id.bShowOffers);
 
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -41,6 +44,17 @@ public class CompanyActivity extends AppCompatActivity {
 
         setTextFields();
         setAllOffersOnClick();
+        setShowOffersOnClick();
+    }
+
+    private void setShowOffersOnClick() {
+        mShowOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent offers = new Intent(CompanyActivity.this, SuperDealsActivity.class);
+                startActivity(offers);
+            }
+        });
     }
 
     private void websiteOnClick(final String website) {

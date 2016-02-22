@@ -18,10 +18,10 @@
     <string name="title_activity_offer">OfferActivity</string>
     <string name="title_create_account">Registrera konto</string>
     <string name="title_password_remind">Återställ lösenord</string>
-    <string name="button_temporary_deals">Tillfäliga deals</string>
+    <string name="button_temporary_deals">Tillfälliga deals</string>
     <string name="button_tfk_partners">TFK-partners</string>
     <string name="button_super_deals">Super deals</string>
-    <string name="button_offers">Erbjudande</string>
+    <string name="button_offers">Erbjudanden</string>
     <string name="button_first_name">Förnamn</string>
     <string name="button_last_name">Efternamn</string>
     <string name="button_email">Email</string>
