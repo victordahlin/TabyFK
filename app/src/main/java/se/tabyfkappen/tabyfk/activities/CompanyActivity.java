@@ -47,6 +47,9 @@ public class CompanyActivity extends AppCompatActivity {
         setShowOffersOnClick();
     }
 
+    /**
+     * Change to super deals view
+     */
     private void setShowOffersOnClick() {
         mShowOffers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +60,10 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open url with your favorite browser
+     * @param website for selected item
+     */
     private void websiteOnClick(final String website) {
         mWebsite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +74,11 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Send mail to the selected company
+     * @param email of the company
+     * @param name of the company
+     */
     private void emailOnClick(final String email, final String name) {
         mEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +92,10 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open phone with company's nr
+     * @param mobile of the company
+     */
     private void mobileOnClick(final String mobile) {
         mMobile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +110,9 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add id and name to the next intent
+     */
     private void setAllOffersOnClick() {
         mAllOffers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +128,9 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Get info and fill the view with information
+     */
     private void setTextFields() {
         companyIntent = getIntent();
         String name = companyIntent.getStringExtra("name");

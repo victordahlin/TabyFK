@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import se.tabyfkappen.tabyfk.Tasks.GetResponseTask;
+import se.tabyfkappen.tabyfk.tasks.GetResponseTask;
 import se.tabyfkappen.tabyfk.models.Category;
 import se.tabyfkappen.tabyfk.models.Company;
 import se.tabyfkappen.tabyfk.models.Offer;
@@ -67,7 +67,12 @@ public class RestClient {
         setCompanies("getCompanies");
         sortCompanies(mCompanies);
     }
-    
+
+    /**
+     * Static instance of this class
+     * @param token provided by Taby FK
+     * @return
+     */
     public static RestClient getInstance(String token) {
         if(mInstance == null) {
             mInstance = new RestClient(token);
@@ -216,9 +221,8 @@ public class RestClient {
     }
 
     /**
-     *
      * @param companyID
-     * @return
+     * @return filtered super deals of type offer
      */
     public ArrayList<Offer> getSelectedOffers(int companyID) {
         ArrayList<Offer> filtered = new ArrayList<>();
@@ -237,9 +241,8 @@ public class RestClient {
     }
 
     /**
-     *
      * @param categoryID
-     * @return
+     * @return filtered companies by id of type company
      */
     public ArrayList<Company> getSelectedCompanies(int categoryID) {
         ArrayList<Company> filtered = new ArrayList<>();
@@ -252,8 +255,8 @@ public class RestClient {
     }
 
     /**
-     *
-     * @param id
+     * Remove offer from list by id
+     * @param id of the offer
      */
     public void removeOffer(int id) {
         Iterator<Offer> superIterator = mSuperDeals.iterator();

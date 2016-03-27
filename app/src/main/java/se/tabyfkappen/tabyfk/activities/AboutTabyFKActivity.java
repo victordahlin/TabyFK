@@ -52,6 +52,9 @@ public class AboutTabyFKActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    /**
+     *
+     */
     private void initDatabase() {
         dataSource = new UserDataSource(this);
         try {

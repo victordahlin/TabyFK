@@ -1,5 +1,7 @@
 package se.tabyfkappen.tabyfk.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +13,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import se.tabyfkappen.tabyfk.adapters.CompanyAdapter;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
+import se.tabyfkappen.tabyfk.models.Company;
 import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.models.User;
 
@@ -60,6 +66,9 @@ public class OfferListActivity extends AppCompatActivity {
         setShowOffersOnClick();
     }
 
+    /**
+     * Change to Super Deals
+     */
     private void setShowOffersOnClick() {
         mShowOffers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +79,10 @@ public class OfferListActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add name, desc and file path to next activity
+     * if user click on selected item
+     */
     private void setListOnClick() {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,10 +99,26 @@ public class OfferListActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * If offer empty show error and close activity.
+     * Otherwise add items to the list and display.
+     */
     private void setCompanyAdapter() {
         int offerId = getIntent().getIntExtra("offerId", 0);
-        mOfferAdapter = new OfferAdapter(this,
-                RestClient.getInstance(mUser.getToken()).getSelectedOffers(offerId));
+        ArrayList<Offer> offers = RestClient.getInstance(mUser.getToken()).getSelectedOffers(offerId);
+
+        if(offers.isEmpty() || offers.size() < 1) {
+            new AlertDialog.Builder(OfferListActivity.this)
+                    .setMessage(R.string.message_no_offers)
+                    .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    }).show();
+        }
+
+        mOfferAdapter = new OfferAdapter(this,offers);
         mListView.setAdapter(mOfferAdapter);
     }
 

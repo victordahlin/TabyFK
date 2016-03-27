@@ -62,6 +62,9 @@ public class AboutAppActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Change activity on selected item
+     */
     private void addDrawerItems() {
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
@@ -90,6 +93,9 @@ public class AboutAppActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Drawer config
+     */
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
