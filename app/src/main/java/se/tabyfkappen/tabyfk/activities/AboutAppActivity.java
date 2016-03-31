@@ -24,8 +24,8 @@ public class AboutAppActivity extends AppCompatActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private UserDataSource dataSource;
-    private User user;
+    private UserDataSource mDataSource;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class AboutAppActivity extends AppCompatActivity {
         initDatabase();
 
         // Get offers JSON from RestAPI and convert to string
-        mAboutApp.setText(RestClient.getInstance(user.getToken()).getAboutApp());
+        mAboutApp.setText(RestClient.getInstance(mUser.getToken()).getAboutApp());
 
         addDrawerItems();
         setupDrawer();
@@ -51,11 +51,14 @@ public class AboutAppActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    /**
+     * Initilize from data source to receive from API
+     */
     private void initDatabase() {
-        dataSource = new UserDataSource(this);
+        mDataSource = new UserDataSource(this);
         try {
-            dataSource.open();
-            user = dataSource.getUser();
+            mDataSource.open();
+            mUser = mDataSource.getUser();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,6 +87,7 @@ public class AboutAppActivity extends AppCompatActivity {
                         startActivity(about);
                         break;
                     case 3:
+                        mDataSource.update(mUser.getEmail(), mUser.getEmail(), null);
                         Intent logout = new Intent(AboutAppActivity.this, LoginActivity.class);
                         startActivity(logout);
                         break;
@@ -141,7 +145,7 @@ public class AboutAppActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         try {
-            dataSource.open();
+            mDataSource.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -150,7 +154,7 @@ public class AboutAppActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        dataSource.close();
+        mDataSource.close();
         super.onPause();
     }
 

@@ -134,11 +134,9 @@ public class TemporaryDealsActivity extends AppCompatActivity {
                         break;
                     case 3:
                         dataSource.update(user.getEmail(), user.getEmail(), null);
-
                         Intent logout = new Intent(TemporaryDealsActivity.this, LoginActivity.class);
                         startActivity(logout);
                         break;
-
                 }
             }
         });
