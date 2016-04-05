@@ -14,17 +14,40 @@
         fresco:roundedCornerRadius="5dp"
         fresco:placeholderImage="@drawable/ic_texture_black_24dp" />
 
-    <TextView
-        android:id="@+id/tvListOffer"
-        android:paddingLeft="15dp"
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_width="0dp"
         android:layout_weight="100"
-        android:singleLine="true"
-        android:maxLength="50"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:layout_width="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOfferTitle"
+            android:paddingLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:singleLine="true"
+            android:text="Exempel"
+            android:maxLength="50"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvOfferDate"
+            android:paddingLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="3dp"
+            android:singleLine="true"
+            android:text="Exempel"
+            android:maxLength="50"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+
 
     <ImageView
         android:id="@+id/ivArrowRight"

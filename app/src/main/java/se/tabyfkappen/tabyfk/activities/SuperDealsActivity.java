@@ -113,7 +113,8 @@ public class SuperDealsActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
+        ArrayAdapter<String> mAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

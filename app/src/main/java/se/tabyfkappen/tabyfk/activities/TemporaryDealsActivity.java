@@ -20,6 +20,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import se.tabyfkappen.tabyfk.adapters.TemporaryDealsAdapter;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
@@ -35,7 +36,7 @@ public class TemporaryDealsActivity extends AppCompatActivity {
     private UserDataSource dataSource;
     private User user;
     private Button mPartners;
-    private OfferAdapter mOfferAdapter;
+    private TemporaryDealsAdapter mOfferAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class TemporaryDealsActivity extends AppCompatActivity {
 
     private void setOfferAdapter() {
         ArrayList<Offer> temporaryDeals = RestClient.getInstance(user.getToken()).getTemporaryDeals();
-        mOfferAdapter = new OfferAdapter(this, temporaryDeals);
+        mOfferAdapter = new TemporaryDealsAdapter(this, temporaryDeals);
         mListView.setAdapter(mOfferAdapter);
     }
 

@@ -73,6 +73,6 @@
     <string name="activation_code_used">Aktiveringskod är redan använd</string>
     <string name="activation_code_invalid">Aktiveringskod är ej giltig</string>
 
-
+    <string name="deal_valid">Giltig t.om.</string>
 
 </resources>
