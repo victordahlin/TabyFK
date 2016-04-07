@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -14,34 +13,47 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
-        android:layout_marginTop="?attr/actionBarSize"
-        fresco:placeholderImage="@drawable/ic_texture_black_24dp" />
+        android:layout_marginTop="?attr/actionBarSize" />
 
-    <TextView
-        android:id="@+id/tvOfferUse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:padding="30dp"
-        android:layout_marginTop="20dp"
-        android:textAllCaps="true"
-        android:visibility="gone"
-        android:background="@drawable/border"
-        android:textColor="@android:color/holo_red_dark"
-        android:text="erbjudande förbrukat"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_weight="100"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvOffer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip"
-        android:text="@string/button_offers"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="20dip" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvOfferUse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:padding="30dp"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                android:background="@drawable/border"
+                android:textColor="@android:color/holo_red_dark"
+                android:text="erbjudande förbrukat"/>
+
+            <TextView
+                android:id="@+id/tvOffer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:text="@string/button_offers"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dip" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/bOfferUse"

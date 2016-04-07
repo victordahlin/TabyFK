@@ -11,8 +11,7 @@
         android:id="@+id/ivGridIcon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        fresco:roundedCornerRadius="5dp"
-        fresco:placeholderImage="@drawable/ic_texture_black_24dp" />
+        fresco:roundedCornerRadius="5dp" />
 
     <TextView
         android:id="@+id/tvGridName"

@@ -11,8 +11,7 @@
         android:layout_margin="5dp"
         android:scaleType="fitStart"
         android:layout_weight="1"
-        fresco:roundedCornerRadius="5dp"
-        fresco:placeholderImage="@drawable/ic_texture_black_24dp" />
+        fresco:roundedCornerRadius="5dp" />
 
     <LinearLayout
         android:layout_height="wrap_content"

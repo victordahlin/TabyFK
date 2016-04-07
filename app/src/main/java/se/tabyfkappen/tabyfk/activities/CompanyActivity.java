@@ -161,7 +161,9 @@ public class CompanyActivity extends AppCompatActivity {
         ivCompany.setImageURI(imageUri);
 
         tvAddress.setText("Besöksadress:\n" + address);
+
         tvOpeningHours.setText("Öppettider:\n" + openingHours);
+
         tvLongTermDeal.setText(longTermDeal);
 
         mobileOnClick(mobile);
