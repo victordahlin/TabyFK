@@ -46,6 +46,4 @@ public class User {
     public String toString() {
         return email + " " + password + " " + token;
     }
-
-
 }

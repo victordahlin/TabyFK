@@ -59,8 +59,9 @@ public class RestClient {
         this.mTemporaryDeals = new ArrayList<>();
 
         setOffers("getOffers");
-        sortOffers(mSuperDeals);
-        sortOffers(mTemporaryDeals);
+        Collections.sort(mSuperDeals);
+        Collections.sort(mTemporaryDeals);
+
         setInformation("getInfo");
         setCategories("getCategories");
         sortCategories(mCategories);
@@ -179,19 +180,6 @@ public class RestClient {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Sort list of offer for expiring date
-     * @param list
-     */
-    private void sortOffers(List<Offer> list) {
-        Collections.sort(list, new Comparator<Offer>() {
-            @Override
-            public int compare(Offer lhs, Offer rhs) {
-                return lhs.getEndDate().compareToIgnoreCase(rhs.getEndDate());
-            }
-        });
     }
 
     /**

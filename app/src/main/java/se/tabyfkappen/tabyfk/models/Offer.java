@@ -3,10 +3,7 @@ package se.tabyfkappen.tabyfk.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by Victor on 2016-01-18.
- */
-public class Offer {
+public class Offer implements Comparable<Offer> {
     private int id, companyId;
     private String name;
     private String description;
@@ -56,5 +53,10 @@ public class Offer {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int compareTo(Offer another) {
+        return getEndDate().compareTo(another.getEndDate());
     }
 }
