@@ -33,7 +33,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.lvItems);
 
-        // init database
         initDatabase();
 
         setCompanyAdapter();

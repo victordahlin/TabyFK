@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.sql.SQLException;
+
+import se.tabyfkappen.tabyfk.Constants;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
@@ -76,22 +78,16 @@ public class AboutAppActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch(position) {
                     case 0 :
-                        Intent deals = new Intent(AboutAppActivity.this, SuperDealsActivity.class);
-                        deals.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(deals);
+                        startActivity(new Intent(AboutAppActivity.this, SuperDealsActivity.class));
                     case 1:
                         break;
                     case 2:
-                        Intent about = new Intent(AboutAppActivity.this, AboutTabyFKActivity.class);
-                        about.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(about);
+                        startActivity(new Intent(AboutAppActivity.this, AboutTabyFKActivity.class));
                         break;
                     case 3:
-                        mDataSource.update(mUser.getEmail(), mUser.getEmail(), null);
-                        Intent logout = new Intent(AboutAppActivity.this, LoginActivity.class);
-                        startActivity(logout);
+                        mDataSource.update("", "", "");
+                        startActivity(new Intent(AboutAppActivity.this, LoginActivity.class));
                         break;
-
                 }
             }
         });

@@ -1,4 +1,4 @@
-package se.tabyfkappen.tabyfk.activities;
+package se.tabyfkappen.tabyfk;
 
 public class Constants {
 

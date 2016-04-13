@@ -19,6 +19,8 @@ import android.widget.ListView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.sql.SQLException;
+
+import se.tabyfkappen.tabyfk.Constants;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
@@ -126,20 +128,17 @@ public class CategoryListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent superDeals = new Intent(CategoryListActivity.this, SuperDealsActivity.class);
-                        startActivity(superDeals);
+                        startActivity(new Intent(CategoryListActivity.this, SuperDealsActivity.class));
                         break;
                     case 1:
-                        Intent app = new Intent(CategoryListActivity.this, AboutAppActivity.class);
-                        startActivity(app);
+                        startActivity(new Intent(CategoryListActivity.this, AboutAppActivity.class));
                         break;
                     case 2:
-                        Intent tabyfk = new Intent(CategoryListActivity.this, AboutTabyFKActivity.class);
-                        startActivity(tabyfk);
+                        startActivity(new Intent(CategoryListActivity.this, AboutTabyFKActivity.class));
                         break;
                     case 3:
-                        Intent logout = new Intent(CategoryListActivity.this, LoginActivity.class);
-                        startActivity(logout);
+                        mDataSource.update("", "", "");
+                        startActivity(new Intent(CategoryListActivity.this, LoginActivity.class));
                         break;
                 }
             }

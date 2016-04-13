@@ -39,17 +39,19 @@ public class CreateAccountActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Find buttons
-        mCancel = (Button) findViewById(R.id.bCancel);
-        mConditionTerms = (Button) findViewById(R.id.bTermsCondition);
-        mCreateAccount = (Button) findViewById(R.id.bCreateAccount);
-
+        initButtons();
         initDatabase();
 
         // Activate on click
         setCancelButtonOnClick();
         setConditionTermsOnClick();
         setCreateAccountOnClick();
+    }
+
+    private void initButtons() {
+        mCancel = (Button) findViewById(R.id.bCancel);
+        mConditionTerms = (Button) findViewById(R.id.bTermsCondition);
+        mCreateAccount = (Button) findViewById(R.id.bCreateAccount);
     }
 
     private void initDatabase() {

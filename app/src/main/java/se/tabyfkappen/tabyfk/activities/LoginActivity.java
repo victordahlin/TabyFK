@@ -36,22 +36,28 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initButtons();
+        initDatabase();
+
+        checkUserLogin();
+        setCreateAccountOnClick();
+        setLoginOnClick();
+        setPasswordRemindOnClick();
+    }
+
+    private void initButtons() {
         mPasswordRemind = (Button) findViewById(R.id.bPasswordRemind);
         mLogin = (Button) findViewById(R.id.bLogin);
         mCreateAccount = (Button) findViewById(R.id.bCreateAccount);
+    }
 
-        // Activate database source
+    private void initDatabase() {
         dataSource = new UserDataSource(LoginActivity.this);
         try {
             dataSource.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        checkUserLogin();
-        setCreateAccountOnClick();
-        setLoginOnClick();
-        setPasswordRemindOnClick();
     }
 
     private void checkUserLogin() {

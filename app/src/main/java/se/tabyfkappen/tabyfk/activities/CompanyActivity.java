@@ -31,12 +31,8 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
-        mAllOffers = (Button) findViewById(R.id.bCompanyAllOffers);
-        mWebsite = (ImageButton) findViewById(R.id.ibWebsite);
-        mEmail = (ImageButton) findViewById(R.id.ibEmail);
-        mMobile = (ImageButton) findViewById(R.id.ibMobile);
-        mShowOffers = (Button) findViewById(R.id.bShowOffers);
+
+        initButtons();
 
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -45,6 +41,14 @@ public class CompanyActivity extends AppCompatActivity {
         setTextFields();
         setAllOffersOnClick();
         setShowOffersOnClick();
+    }
+
+    private void initButtons() {
+        mAllOffers = (Button) findViewById(R.id.bCompanyAllOffers);
+        mWebsite = (ImageButton) findViewById(R.id.ibWebsite);
+        mEmail = (ImageButton) findViewById(R.id.ibEmail);
+        mMobile = (ImageButton) findViewById(R.id.ibMobile);
+        mShowOffers = (Button) findViewById(R.id.bShowOffers);
     }
 
     /**

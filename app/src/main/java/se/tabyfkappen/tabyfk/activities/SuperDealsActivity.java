@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import java.sql.SQLException;
+
+import se.tabyfkappen.tabyfk.Constants;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
@@ -40,21 +42,8 @@ public class SuperDealsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mListView = (ListView) findViewById(R.id.lvItems);
-        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mTemporaryDealsButton = (Button) findViewById(R.id.bTemporaryDeals);
-        mPartners = (Button) findViewById(R.id.bTFKpartners);
-
-        // Init database handler
-        mDataSource = new UserDataSource(this);
-        try {
-            mDataSource.open();
-            mUser = mDataSource.getUser();
-            RestClient.getInstance(mUser.getToken());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        init();
+        initDatabase();
 
         addDrawerItems();
         setupDrawer();
@@ -67,6 +56,26 @@ public class SuperDealsActivity extends AppCompatActivity {
         // Add toggle switch in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void init() {
+        mListView = (ListView) findViewById(R.id.lvItems);
+        mDrawerList = (ListView) findViewById(R.id.lNavDeals);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mTemporaryDealsButton = (Button) findViewById(R.id.bTemporaryDeals);
+        mPartners = (Button) findViewById(R.id.bTFKpartners);
+    }
+
+    private void initDatabase() {
+        // Init database handler
+        mDataSource = new UserDataSource(this);
+        try {
+            mDataSource.open();
+            mUser = mDataSource.getUser();
+            RestClient.getInstance(mUser.getToken());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setTemporaryDealsOnClick() {
@@ -123,17 +132,20 @@ public class SuperDealsActivity extends AppCompatActivity {
                     case 0:
                         break;
                     case 1:
-                        Intent app = new Intent(SuperDealsActivity.this, AboutAppActivity.class);
-                        startActivity(app);
+                        startActivity(
+                                new Intent(SuperDealsActivity.this, AboutAppActivity.class)
+                        );
                         break;
                     case 2:
-                        Intent about = new Intent(SuperDealsActivity.this, AboutTabyFKActivity.class);
-                        startActivity(about);
+                        startActivity(
+                                new Intent(SuperDealsActivity.this, AboutTabyFKActivity.class)
+                        );
                         break;
                     case 3:
-                        mDataSource.update(mUser.getEmail(), mUser.getEmail(), null);
-                        Intent logout = new Intent(SuperDealsActivity.this, LoginActivity.class);
-                        startActivity(logout);
+                        mDataSource.update("", "", "");
+                        startActivity(
+                                new Intent(SuperDealsActivity.this, LoginActivity.class)
+                        );
                         break;
                 }
             }

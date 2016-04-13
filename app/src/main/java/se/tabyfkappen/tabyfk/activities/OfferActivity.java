@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +27,9 @@ public class OfferActivity extends AppCompatActivity {
     private TextView tvOffer;
     private TextView tvOfferUsed;
     private int mOfferId;
-    private UserDataSource dataSource;
+    private UserDataSource mDataSource;
     private User user;
+    private SimpleDraweeView ivOffer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,25 +42,15 @@ public class OfferActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        SimpleDraweeView ivOffer = (SimpleDraweeView) findViewById(R.id.ivOffer);
-        tvOffer = (TextView) findViewById(R.id.tvOffer);
-        mOfferUse = (Button) findViewById(R.id.bOfferUse);
-        tvOfferUsed = (TextView) findViewById(R.id.tvOfferUse);
+        init();
+        initDatabase();
 
+        // Get data from other activity
         Intent offerIntent = getIntent();
         mOfferId = offerIntent.getIntExtra("id", 0);
         String name = offerIntent.getStringExtra("name");
         String description = offerIntent.getStringExtra("description");
         String imageFilePath = offerIntent.getStringExtra("imageFilePath");
-
-        // Init database handler
-        dataSource = new UserDataSource(this);
-        try {
-            dataSource.open();
-            user = dataSource.getUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         // Apply URL for current offer
         String url = "https://www.tabyfkappen.se/api/v1/image/" + imageFilePath;
@@ -69,6 +61,25 @@ public class OfferActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(name);
         setOfferUseOnClick();
     }
+
+    private void init() {
+        ivOffer = (SimpleDraweeView) findViewById(R.id.ivOffer);
+        tvOffer = (TextView) findViewById(R.id.tvOffer);
+        mOfferUse = (Button) findViewById(R.id.bOfferUse);
+        tvOfferUsed = (TextView) findViewById(R.id.tvOfferUse);
+    }
+
+    private void initDatabase() {
+        mDataSource = new UserDataSource(this);
+        try {
+            mDataSource.open();
+            user = mDataSource.getUser();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     private void setOfferUseOnClick() {
         mOfferUse.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +126,7 @@ public class OfferActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         try {
-            dataSource.open();
+            mDataSource.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,7 +135,7 @@ public class OfferActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        dataSource.close();
+        mDataSource.close();
         super.onPause();
     }
 

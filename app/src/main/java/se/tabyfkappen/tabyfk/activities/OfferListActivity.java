@@ -30,6 +30,7 @@ public class OfferListActivity extends AppCompatActivity {
     private User mUser;
     private Button mShowOffers;
     private OfferAdapter mOfferAdapter;
+    private TextView mTvOfferFor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,26 @@ public class OfferListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        // init database
+        initDatabase();
+        init();
+
+        String name = getIntent().getStringExtra("offerName");
+
+        mTvOfferFor.setText(getResources().getString(R.string.button_offers) + " för " + name);
+        getSupportActionBar().setTitle(name);
+
+        setCompanyAdapter();
+        setListOnClick();
+        setShowOffersOnClick();
+    }
+
+    private void init() {
+        mListView = (ListView) findViewById(R.id.lvItems);
+        mShowOffers = (Button) findViewById(R.id.bShowOffers);
+        mTvOfferFor = (TextView) findViewById(R.id.tvOffersFor);
+    }
+
+    private void initDatabase() {
         mDataSource = new UserDataSource(this);
         try {
             mDataSource.open();
@@ -51,19 +71,6 @@ public class OfferListActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        String name = getIntent().getStringExtra("offerName");
-
-        mListView = (ListView) findViewById(R.id.lvItems);
-        TextView tvOfferFor = (TextView) findViewById(R.id.tvOffersFor);
-        mShowOffers = (Button) findViewById(R.id.bShowOffers);
-
-        tvOfferFor.setText(getResources().getString(R.string.button_offers) + " för " + name);
-        getSupportActionBar().setTitle(name);
-
-        setCompanyAdapter();
-        setListOnClick();
-        setShowOffersOnClick();
     }
 
     /**

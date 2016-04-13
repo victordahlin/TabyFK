@@ -28,13 +28,16 @@ public class ResetPasswordActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Find buttons
-        mPasswordRemindButton = (Button) findViewById(R.id.bGetPassword);
-        mCancelButton = (Button) findViewById(R.id.bPasswordCancel);
+        init();
 
         // Activate event for buttons
         setPasswordRemindOnClick();
         setCancelOnClick();
+    }
+
+    private void init() {
+        mPasswordRemindButton = (Button) findViewById(R.id.bGetPassword);
+        mCancelButton = (Button) findViewById(R.id.bPasswordCancel);
     }
 
     private void setPasswordRemindOnClick() {
