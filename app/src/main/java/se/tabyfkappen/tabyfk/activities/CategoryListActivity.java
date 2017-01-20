@@ -58,8 +58,10 @@ public class CategoryListActivity extends AppCompatActivity {
         setShowOffersOnClick();
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     private void initGUIElements() {

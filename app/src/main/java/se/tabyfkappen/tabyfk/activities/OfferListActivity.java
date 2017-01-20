@@ -14,13 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import se.tabyfkappen.tabyfk.adapters.CompanyAdapter;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
-import se.tabyfkappen.tabyfk.models.Company;
 import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.models.User;
 
@@ -29,7 +26,6 @@ public class OfferListActivity extends AppCompatActivity {
     private UserDataSource mDataSource;
     private User mUser;
     private Button mShowOffers;
-    private OfferAdapter mOfferAdapter;
     private TextView mTvOfferFor;
 
     @Override
@@ -40,8 +36,10 @@ public class OfferListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
 
         initDatabase();
         init();
@@ -125,7 +123,7 @@ public class OfferListActivity extends AppCompatActivity {
                     }).show();
         }
 
-        mOfferAdapter = new OfferAdapter(this,offers);
+        OfferAdapter mOfferAdapter = new OfferAdapter(this,offers);
         mListView.setAdapter(mOfferAdapter);
     }
 

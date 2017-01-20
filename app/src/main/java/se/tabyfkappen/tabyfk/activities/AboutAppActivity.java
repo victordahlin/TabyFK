@@ -49,8 +49,10 @@ public class AboutAppActivity extends AppCompatActivity {
         setupDrawer();
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     /**

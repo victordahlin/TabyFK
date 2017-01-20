@@ -75,4 +75,9 @@
 
     <string name="deal_valid">Giltig t.om.</string>
 
+    <!-- CompanyActivity -->
+    <string name="company_activity_url">https://www.tabyfkappen.se/api/v1/image/</string>
+    <string name="company_activity_visiting_address">"Besöksadress:\n" %1$s</string>
+    <string name="company_activity_opening_hours">"Öppettider:\n" %1$s</string>
+
 </resources>

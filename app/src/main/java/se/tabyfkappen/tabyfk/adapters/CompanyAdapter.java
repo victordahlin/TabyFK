@@ -14,7 +14,7 @@ import se.tabyfkappen.tabyfk.models.Company;
 
 public class CompanyAdapter extends ArrayAdapter<Company> {
 
-    public static class ViewHolder {
+    private static class ViewHolder {
         TextView tvCompany;
         SimpleDraweeView  ivCompany;
     }

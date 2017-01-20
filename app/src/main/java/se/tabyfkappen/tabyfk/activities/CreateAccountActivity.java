@@ -93,12 +93,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String mPasswordVerify = etPasswordVerify.getText().toString();
                 String mCode = etCode.getText().toString().trim();
 
-                if((mFirstName.isEmpty() && mFirstName != null)
-                        || (mLastName.isEmpty() && mLastName != null)
-                        || (mEmail.isEmpty() && mEmail != null)
-                        || (mPassword.isEmpty() && mPassword != null)
-                        || (mPasswordVerify.isEmpty() && mPasswordVerify != null)
-                        || (mCode.isEmpty() && mCode != null)) {
+                if(mFirstName.isEmpty() || mLastName.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty() || mPasswordVerify.isEmpty() || mCode.isEmpty()) {
                     setAlertBox(R.string.empty, R.string.message_all_fields);
                 } else if(mPassword.length() < 6) {
                     setAlertBox(R.string.empty, R.string.error_invalid_password);

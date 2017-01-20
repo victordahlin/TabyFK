@@ -57,8 +57,10 @@ public class TemporaryDealsActivity extends AppCompatActivity {
         setPartnersOnClick();
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     private void init() {
@@ -189,7 +191,6 @@ public class TemporaryDealsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
         return mDrawerToggle.onOptionsItemSelected(item);
     }
 

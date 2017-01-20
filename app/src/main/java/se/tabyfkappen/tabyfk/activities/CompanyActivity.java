@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import se.tabyfkappen.tabyfk.R;
-import se.tabyfkappen.tabyfk.models.Company;
 
 public class CompanyActivity extends AppCompatActivity {
     private Button mAllOffers;
@@ -35,8 +34,10 @@ public class CompanyActivity extends AppCompatActivity {
         initButtons();
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
 
         setTextFields();
         setAllOffersOnClick();
@@ -160,21 +161,21 @@ public class CompanyActivity extends AppCompatActivity {
         TextView tvLongTermDeal = (TextView) findViewById(R.id.tvLongTermDeal);
 
         // Apply URL for current offer
-        String url = "https://www.tabyfkappen.se/api/v1/image/" + imageFilePath;
+        String url = getString(R.string.company_activity_url) + imageFilePath;
         Uri imageUri = Uri.parse(url);
         ivCompany.setImageURI(imageUri);
 
-        tvAddress.setText("Besöksadress:\n" + address);
-
-        tvOpeningHours.setText("Öppettider:\n" + openingHours);
-
+        tvAddress.setText(getString(R.string.company_activity_visiting_address, address));
+        tvOpeningHours.setText(getString(R.string.company_activity_visiting_address, openingHours));
         tvLongTermDeal.setText(longTermDeal);
 
         mobileOnClick(mobile);
         emailOnClick(email, name);
         websiteOnClick(website);
 
-        getSupportActionBar().setTitle(name);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(name);
+        }
     }
 
     @Override

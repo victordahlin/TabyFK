@@ -15,7 +15,7 @@ import se.tabyfkappen.tabyfk.models.Offer;
 
 public class TemporaryDealsAdapter extends ArrayAdapter<Offer> {
 
-    public static class ViewHolder {
+    private static class ViewHolder {
         TextView mTvOfferTitle;
         TextView mTvOfferDate;
         SimpleDraweeView  mIvOffer;

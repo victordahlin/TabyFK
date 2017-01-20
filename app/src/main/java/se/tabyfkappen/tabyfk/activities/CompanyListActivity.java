@@ -33,7 +33,6 @@ public class CompanyListActivity extends AppCompatActivity {
     private Button mShowOffers;
     private UserDataSource mDataSource;
     private User mUser;
-    private CompanyAdapter mCompanyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,10 @@ public class CompanyListActivity extends AppCompatActivity {
         setShowOffersOnClick();
 
         // Add toggle switch in the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     private void initGUIElements() {
@@ -97,7 +98,7 @@ public class CompanyListActivity extends AppCompatActivity {
     }
 
     private void setCompanyAdapter() {
-        mCompanyAdapter = new CompanyAdapter(this,
+        CompanyAdapter mCompanyAdapter = new CompanyAdapter(this,
                 RestClient.getInstance(mUser.getToken()).getCompanies());
         mListView.setAdapter(mCompanyAdapter);
     }
@@ -125,7 +126,7 @@ public class CompanyListActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         ArrayAdapter<String> mAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Constants.menuItems);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
