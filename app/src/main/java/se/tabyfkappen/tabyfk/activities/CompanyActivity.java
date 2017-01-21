@@ -15,6 +15,10 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import se.tabyfkappen.tabyfk.R;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CompanyActivity extends AppCompatActivity {
     private Button mAllOffers;
     private Intent companyIntent;

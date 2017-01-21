@@ -28,6 +28,10 @@ import javax.net.ssl.HttpsURLConnection;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CreateAccountActivity extends AppCompatActivity {
     private Button mCreateAccount, mCancel, mConditionTerms;
     UserDataSource dataSource;
@@ -94,15 +98,15 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String mCode = etCode.getText().toString().trim();
 
                 if(mFirstName.isEmpty() || mLastName.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty() || mPasswordVerify.isEmpty() || mCode.isEmpty()) {
-                    setAlertBox(R.string.empty, R.string.message_all_fields);
+                    setAlertBox(R.string.error_create_title, R.string.message_all_fields);
                 } else if(mPassword.length() < 6) {
-                    setAlertBox(R.string.empty, R.string.error_invalid_password);
+                    setAlertBox(R.string.error_create_title, R.string.error_invalid_password);
                 } else if (!mPassword.equals(mPasswordVerify)) {
-                    setAlertBox(R.string.empty, R.string.error_incorrect_password);
+                    setAlertBox(R.string.error_create_title, R.string.error_incorrect_password);
                 } else if(!cbTermConditions.isChecked()) {
                     setAlertBox(R.string.error_condition, R.string.error_condition_accept);
                 } else if(!mEmail.contains("@")) {
-                    setAlertBox(R.string.error_email, R.string.error_email_message);
+                    setAlertBox(R.string.error_email_no_at, R.string.error_email_message);
                 } else {
                     new CreateAccountTask(mFirstName, mLastName, mEmail, mPassword, mCode).execute();
                 }
@@ -243,7 +247,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             } else if(msg.contains("404")) {
                 setAlertBox(R.string.activation_code, R.string.activation_code_invalid);
             } else if(msg.contains("403")) {
-                setAlertBox(R.string.error_email, R.string.error_email_used);
+                setAlertBox(R.string.error_create_title, R.string.error_email_used);
             } else {
                 try {
                     JSONObject jsonObject = new JSONObject(msg);

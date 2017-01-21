@@ -22,6 +22,10 @@ import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class AboutTabyFKActivity extends AppCompatActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;

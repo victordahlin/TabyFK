@@ -25,6 +25,10 @@ import se.tabyfkappen.tabyfk.models.Offer;
 import se.tabyfkappen.tabyfk.adapters.OfferAdapter;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class SuperDealsActivity extends AppCompatActivity {
     private ListView mDrawerList, mListView;
     private ActionBarDrawerToggle mDrawerToggle;

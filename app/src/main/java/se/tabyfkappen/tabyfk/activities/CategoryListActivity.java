@@ -28,6 +28,10 @@ import se.tabyfkappen.tabyfk.adapters.CategoryAdapter;
 import se.tabyfkappen.tabyfk.models.Category;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CategoryListActivity extends AppCompatActivity {
     private ListView mDrawerList;
     private GridView mGridView;

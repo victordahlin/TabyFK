@@ -27,6 +27,10 @@ import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class LoginActivity extends AppCompatActivity {
     Button mPasswordRemind, mLogin, mCreateAccount;
     private UserDataSource dataSource;
@@ -87,26 +91,38 @@ public class LoginActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Grab content from the text view
                 EditText etEmail = (EditText) findViewById(R.id.etEmail);
                 EditText etPassword = (EditText) findViewById(R.id.etPassword);
-
+                // Convert fields to strings
                 String mEmail = etEmail.getText().toString();
                 String mPassword = etPassword.getText().toString();
-
-                if(mPassword.isEmpty() || mEmail.isEmpty() || !mEmail.contains("@")) {
-                    new AlertDialog.Builder(LoginActivity.this)
-                            .setTitle(R.string.button_login_error)
-                            .setMessage(R.string.email_and_password_message)
-                            .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {}
-                            }).show();
+                // Password should not be empty or contain less than 5 characters
+                if (mPassword.isEmpty()) {
+                    loginAlertDialog(R.string.error_login_title, R.string.error_password);
+                } else if (mPassword.length() < 5) {
+                    loginAlertDialog(R.string.error_login_title, R.string.error_password_too_short);
+                } else if (mEmail.isEmpty()) {
+                    loginAlertDialog(R.string.error_login_title, R.string.error_email_empty);
+                } else if (!mEmail.contains("@")) {
+                    loginAlertDialog(R.string.error_login_title, R.string.error_email_no_at);
                 } else {
-                    new UserLoginTask(mEmail, mPassword).execute();
+                    //new UserLoginTask(mEmail, mPassword).execute();
+                    final Intent offers = new Intent(LoginActivity.this, SuperDealsActivity.class);
+                    startActivity(offers);
                 }
             }
         });
+    }
+
+    private void loginAlertDialog(int title, int message) {
+        new AlertDialog.Builder(LoginActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                }).show();
     }
 
     private void setCreateAccountOnClick() {
@@ -215,7 +231,7 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(final String msg) {
             if(msg.contains("401")) {
                 new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle(R.string.button_login_error)
+                        .setTitle(R.string.error_login_title)
                         .setMessage(R.string.error_email_password)
                         .setPositiveButton(R.string.button_close, new DialogInterface.OnClickListener() {
                             @Override

@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import se.tabyfkappen.tabyfk.helpers.MySQLiteHelper;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class UserDataSource {
     private SQLiteDatabase db;
     private MySQLiteHelper dbHelper;

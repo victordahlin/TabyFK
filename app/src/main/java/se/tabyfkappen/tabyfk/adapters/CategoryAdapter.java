@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.models.Category;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CategoryAdapter extends BaseAdapter {
     private ArrayList<Category> categories;
     private Context context;

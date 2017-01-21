@@ -3,6 +3,10 @@ package se.tabyfkappen.tabyfk.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class Offer implements Comparable<Offer> {
     private int id, companyId;
     private String name;

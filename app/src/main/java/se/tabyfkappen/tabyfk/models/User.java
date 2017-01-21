@@ -1,7 +1,8 @@
 package se.tabyfkappen.tabyfk.models;
 
 /**
- * Created by Victor on 2016-01-24.
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
  */
 public class User {
     private long id;

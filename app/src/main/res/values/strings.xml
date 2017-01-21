@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">TäbyFK</string>
     <string name="prompt_email">Email</string>
-    <string name="error_email">Felaktig e-mail</string>
-    <string name="error_email_password">Fel e-mail eller lösenord</string>
+
+    <!-- Errors -->
+    <string name="error_email_empty">E-mail får inte vara tomt</string>
+    <string name="error_email_no_at">Felaktig email adress</string>
+    <string name="error_password">Lösenord får inte vara tomt</string>
+    <string name="error_password_too_short">Lösenordet måste vara längre än 5 tecken</string>
     <string name="error_send_email_password">Kunde inte skicka ut nytt lösenord</string>
     <string name="error_email_message">Ange en riktig e-mail</string>
+    <string name="error_email_password">Fel e-mail eller lösenord</string>
     <string name="error_email_used">"E-mail som angavs har redan blivit använd</string>
+    <string name="error_login_title">Kunde inte logga in</string>
+    <string name="error_create_title">Kan inte skapa ett konto</string>
     <string name="prompt_password">Lösenord</string>
     <string name="email_and_password_message">"Vänligen fyll i e-mail och/eller lösenord"</string>
     <string name="error_invalid_email">Den givna e-mail existerar ej</string>
@@ -13,8 +20,9 @@
     <string name="error_incorrect_password">"Lösenorden matchar inte", "Var god försök igen"</string>
     <string name="error_condition">Påminnelse om villkor</string>
     <string name="error_condition_accept">Ni måste acceptera villkoren</string>
-    <string name="empty"></string>
     <string name="error_field_required">This field is required</string>
+
+    <string name="empty"></string>
     <string name="title_activity_offer">OfferActivity</string>
     <string name="title_create_account">Registrera konto</string>
     <string name="title_password_remind">Återställ lösenord</string>
@@ -26,7 +34,6 @@
     <string name="button_last_name">Efternamn</string>
     <string name="button_email">Email</string>
     <string name="button_login">Logga in</string>
-    <string name="button_login_error">Kunde inte logga in</string>
     <string name="button_password">Lösenord</string>
     <string name="button_password_remind">Glömt lösenord?</string>
     <string name="button_password_verify">Lösenord (igen)</string>
@@ -62,7 +69,6 @@
     <string name="message_no">Nej</string>
     <string name="message_email_send">Mail utskickat</string>
     <string name="message_email_send_info">Tack, vi har skickat ut en länk till din e-mail</string>
-
 
     <!-- CategoryActivity -->
     <string name="message_no_offers">Tyvärr finns det inga erbjudande just nu</string>

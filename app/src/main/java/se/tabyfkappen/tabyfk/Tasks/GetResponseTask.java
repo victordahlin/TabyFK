@@ -1,4 +1,4 @@
-package se.tabyfkappen.tabyfk.tasks;
+package se.tabyfkappen.tabyfk.Tasks;
 
 import android.os.AsyncTask;
 

@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import se.tabyfkappen.tabyfk.R;
 import se.tabyfkappen.tabyfk.models.Offer;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class OfferAdapter extends ArrayAdapter<Offer> {
 
     private static class ViewHolder {

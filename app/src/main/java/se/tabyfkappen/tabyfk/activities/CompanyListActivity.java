@@ -25,6 +25,10 @@ import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.models.Company;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CompanyListActivity extends AppCompatActivity {
     private ListView mDrawerList, mListView;
     private ActionBarDrawerToggle mDrawerToggle;

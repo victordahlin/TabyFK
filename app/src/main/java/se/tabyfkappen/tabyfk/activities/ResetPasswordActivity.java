@@ -18,6 +18,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import se.tabyfkappen.tabyfk.R;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class ResetPasswordActivity extends AppCompatActivity {
     private Button mPasswordRemindButton, mCancelButton;
 
@@ -126,7 +130,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Integer msg) {
             if(msg == 404) {
-                setAlertBox(R.string.error_email, R.string.error_invalid_email);
+                setAlertBox(R.string.error_login_title, R.string.error_invalid_email);
             } else {
                 setAlertBox(R.string.message_email_send, R.string.message_email_send_info);
             }

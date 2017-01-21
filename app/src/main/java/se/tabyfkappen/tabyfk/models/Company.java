@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 /**
  * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
  */
 public class Company {
     private int id, categoryId;

@@ -9,11 +9,15 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import se.tabyfkappen.tabyfk.tasks.GetResponseTask;
+import se.tabyfkappen.tabyfk.Tasks.GetResponseTask;
 import se.tabyfkappen.tabyfk.models.Category;
 import se.tabyfkappen.tabyfk.models.Company;
 import se.tabyfkappen.tabyfk.models.Offer;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class RestClient {
     private String token;
     private final String url;
@@ -84,7 +88,7 @@ public class RestClient {
     /**
      * Receive all offers from JSON and split into super
      * and temporary deals and create Offer objects
-     * @param subDomain
+     * @param subDomain name of sub domain
      */
     private void setOffers(String subDomain) {
         try {
@@ -114,7 +118,7 @@ public class RestClient {
     /**
      * Receive all companies JSON and create
      * Company objects
-     * @param subDomain
+     * @param subDomain name of sub domain
      */
     private void setCompanies(String subDomain) {
         try {
@@ -136,7 +140,8 @@ public class RestClient {
     }
 
     /**
-     *
+     * Receive JSON Object from server and apply with model
+     * to mCategories list
      * @param subDomain
      */
     private void setCategories(String subDomain) {
@@ -159,8 +164,8 @@ public class RestClient {
     }
 
     /**
-     *
-     * @param subDomain
+     *  Receive JSON Object with company information
+     * @param subDomain name of sub domain
      */
     private void setInformation(String subDomain) {
         try {
@@ -196,8 +201,8 @@ public class RestClient {
     }
 
     /**
-     * Sort categories for names
-     * @param list
+     * Sort categories objects with their names
+     * @param list of sorted categories
      */
     private void sortCategories(List<Category> list) {
         Collections.sort(list, new Comparator<Category>() {
@@ -229,8 +234,9 @@ public class RestClient {
     }
 
     /**
-     * @param categoryID
-     * @return filtered companies by id of type company
+     * Filter list of categories after id
+     * @param categoryID the group name
+     * @return filtered list of companies
      */
     public ArrayList<Company> getSelectedCompanies(int categoryID) {
         ArrayList<Company> filtered = new ArrayList<>();

@@ -21,6 +21,10 @@ import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.models.User;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class OfferActivity extends AppCompatActivity {
     private Button mOfferUse;
     private TextView tvOffer;

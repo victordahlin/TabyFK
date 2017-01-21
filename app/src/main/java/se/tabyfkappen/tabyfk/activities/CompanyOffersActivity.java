@@ -6,6 +6,10 @@ import android.support.v7.widget.Toolbar;
 
 import se.tabyfkappen.tabyfk.R;
 
+/**
+ * Created by Victor on 2016-01-21.
+ * Updated: 2017-01-21
+ */
 public class CompanyOffersActivity extends AppCompatActivity {
 
     @Override
