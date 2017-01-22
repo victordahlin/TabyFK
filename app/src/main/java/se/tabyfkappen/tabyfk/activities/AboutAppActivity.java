@@ -17,8 +17,8 @@ import android.widget.TextView;
 import java.sql.SQLException;
 
 import se.tabyfkappen.tabyfk.Constants;
-import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.R;
+import se.tabyfkappen.tabyfk.helpers.RestClient;
 import se.tabyfkappen.tabyfk.dao.UserDataSource;
 import se.tabyfkappen.tabyfk.models.User;
 

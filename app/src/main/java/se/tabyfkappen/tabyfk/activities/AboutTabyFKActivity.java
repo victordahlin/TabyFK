@@ -60,9 +60,6 @@ public class AboutTabyFKActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     *
-     */
     private void initDatabase() {
         mDataSource = new UserDataSource(this);
         try {

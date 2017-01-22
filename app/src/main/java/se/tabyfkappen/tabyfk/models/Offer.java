@@ -3,16 +3,12 @@ package se.tabyfkappen.tabyfk.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by Victor on 2016-01-21.
- * Updated: 2017-01-21
- */
 public class Offer implements Comparable<Offer> {
     private int id, companyId;
     private String name;
     private String description;
     private String endDate;
-    private int isSuperDeal;
+    private boolean isSuperDeal;
     private String imageFilePath;
 
     public int getId() {
@@ -35,7 +31,7 @@ public class Offer implements Comparable<Offer> {
         return imageFilePath;
     }
 
-    public int getIsSuperDeal() {
+    public boolean IsSuperDeal() {
         return isSuperDeal;
     }
 
@@ -51,8 +47,11 @@ public class Offer implements Comparable<Offer> {
             this.name = object.getString("name");
             this.description = object.getString("description");
             this.endDate = object.getString("end_date");
-            this.isSuperDeal = object.getInt("is_super_deal");
             this.imageFilePath = object.getString("image_file_path");
+
+            if (object.getInt("is_super_deal") > 0) {
+                this.isSuperDeal = true;
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -76,7 +76,7 @@ public class RestClient {
     /**
      * Static instance of this class
      * @param token provided by Taby FK
-     * @return
+     * @return instance of this class
      */
     public static RestClient getInstance(String token) {
         if(mInstance == null) {
@@ -102,10 +102,11 @@ public class RestClient {
 
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                if(jsonObject.getInt("is_super_deal") > 0) {
-                    mSuperDeals.add(new Offer(jsonObject));
+                Offer offer = new Offer(jsonObject);
+                if (offer.IsSuperDeal()) {
+                    mSuperDeals.add(offer);
                 } else {
-                    mTemporaryDeals.add(new Offer(jsonObject));
+                    mTemporaryDeals.add(offer);
                 }
             }
         } catch (JSONException e) {
@@ -142,7 +143,7 @@ public class RestClient {
     /**
      * Receive JSON Object from server and apply with model
      * to mCategories list
-     * @param subDomain
+     * @param subDomain name of the sub domain
      */
     private void setCategories(String subDomain) {
         try {
